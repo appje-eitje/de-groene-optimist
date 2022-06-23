@@ -9,5 +9,9 @@
   "devDependencies": {
     "@nuxt/content-edge": "latest",
     "nuxt": "^3.0.0-rc.4"
+  },
+  "dependencies": {
+    "@fontsource/alegreya-sans": "^4.5.8",
+    "@fontsource/nunito": "^4.5.9"
   }
 }
