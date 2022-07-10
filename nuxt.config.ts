@@ -4,6 +4,7 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
   modules: ['@nuxt/content-edge'],
   css: [
+    '@/assets/css/reset.css',
     '@/assets/css/main.css'
   ]
 })
