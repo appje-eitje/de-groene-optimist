@@ -6,8 +6,8 @@
     <p class="header__title">De Groene Optimist</p>
 
     <nav class="navigation">
-      <button class="navigation__button" @click="menuOpen = !menuOpen">open</button>
-      <ul class="navigation__menu" :aria-expanded="menuOpen">
+      <button class="navigation__button" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen">open</button>
+      <ul class="navigation__menu">
         <li>
           <a href="">linkje</a>
         </li>
@@ -49,6 +49,16 @@ export default {
 
 .navigation {
   margin-left: auto;
+}
+
+.navigation {
+  background: white;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 2em;
+  height: 100%;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
 .navigation__menu[aria-expanded="false"] {
