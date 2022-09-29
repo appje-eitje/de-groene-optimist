@@ -3,3 +3,7 @@
     <ContentDoc />
   </main>
 </template>
+
+<style>
+
+</style>

@@ -5,14 +5,14 @@
     </span>
     <p class="header__title">De Groene Optimist</p>
 
-    <nav class="navigation">
-      <button class="navigation__button" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen">open</button>
-      <ul class="navigation__menu">
-        <li>
-          <a href="">linkje</a>
-        </li>
-      </ul>
-    </nav>
+<!--    <nav class="navigation">-->
+<!--      <button class="navigation__button" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen">open</button>-->
+<!--      <ul class="navigation__menu">-->
+<!--        <li>-->
+<!--          <a href="">linkje</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </nav>-->
   </header>
 </template>
 
@@ -33,6 +33,7 @@ export default {
 .header {
   display: flex;
   align-items: center;
+  grid-area: header;
 }
 
 .header__logo {
