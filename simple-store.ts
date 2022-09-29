@@ -15,40 +15,54 @@ const state = () => ({
     voorschotPerMaand: 0,
 
     scenarioFactor: 0,
+    scenarioEffectOpStroom: false
 })
 
 const getters = {
     overzicht: (state) => {
-
-        console.log('overzicht')
         
+        // gas berekeningen
+
         let gasJaarKosten = 0
-        if (state.gasPlafond > state.gasJaarVerbruik) {
-            gasJaarKosten += state.gasPlafondTarief * state.gasJaarVerbruik
+        let gasScenarioJaarVerbruik = state.gasJaarVerbruik - (state.scenarioFactor * state.gasJaarVerbruik)
+        if (state.gasPlafond > gasScenarioJaarVerbruik) {
+            gasJaarKosten += state.gasPlafondTarief * gasScenarioJaarVerbruik
         } else {
             gasJaarKosten += state.gasPlafondTarief * state.gasPlafond
-            gasJaarKosten += state.gasJaarTarief * (state.gasJaarVerbruik - state.gasPlafond)
+            gasJaarKosten += state.gasJaarTarief * (gasScenarioJaarVerbruik - state.gasPlafond)
         }
+
+        // kWh berekeningen
 
         let kWhJaarKosten = 0
-        if (state.kWhPlafond > state.kWhJaarVerbruik) {
-            kWhJaarKosten += state.kWhPlafondTarief * state.kWhJaarVerbruik
-        } else {
-            kWhJaarKosten += state.kWhPlafondTarief * state.kWhPlafond
-            kWhJaarKosten += state.kWhJaarTarief * (state.kWhJaarVerbruik - state.kWhPlafond)
+        let kWhScenarioJaarVerbruik = state.kWhJaarVerbruik 
+        if (state.scenarioEffectOpStroom) {
+            kWhScenarioJaarVerbruik -= state.scenarioFactor * state.kWhJaarVerbruik
         }
 
-        kWhJaarKosten -= state.scenarioFactor * kWhJaarKosten
-        gasJaarKosten -= state.scenarioFactor * kWhJaarKosten
+        if (state.kWhPlafond > kWhScenarioJaarVerbruik) {
+            kWhJaarKosten += state.kWhPlafondTarief * kWhScenarioJaarVerbruik
+        } else {
+            kWhJaarKosten += state.kWhPlafondTarief * state.kWhPlafond
+            kWhJaarKosten += state.kWhJaarTarief * (kWhScenarioJaarVerbruik - state.kWhPlafond)
+        }
+
+        // jaar berekeningen
 
         const jaarKosten = gasJaarKosten + kWhJaarKosten
         const jaarVoorschot = 12 * state.voorschotPerMaand
+        const jaarVerschil = jaarKosten - jaarVoorschot
 
         return {
+            gasScenarioJaarVerbruik,
             gasJaarKosten,
+
+            kWhScenarioJaarVerbruik,
             kWhJaarKosten,
+
             jaarKosten,
-            jaarVoorschot
+            jaarVoorschot,
+            jaarVerschil
         }
     }
 }
