@@ -1,35 +1,38 @@
 <template>
   <main class="main-content">
+
     <h1 class="app-page__heading">Bereken je energiekosten</h1>
-    <div class="app-content-block winter-slider">
-      <h2 class="app-section__heading">Het is de deze winter</h2>
-      <div class="winter-slider__labels">
-        <label>
-        koud
-      </label>
-        <label>
-          warm
-        </label>
-      </div>
-      <input class="winter-slider__slider" type="range" min="-1" max="1" step="0.01" v-model.number="scenarioFactor">
-    </div>
+
     <section class="app-content-block section-situatie">
       <h2 class="app-section__heading">Mijn gegevens</h2>
       <label for="gasJaarVerbruik">Gasverbruik per jaar is kubieke meter (m3)</label>
-      <input type="text" id="gasJaarVerbruik" name="gasJaarVerbruik" v-model.number="gasJaarVerbruik">
+      <input type="number" step="1" id="gasJaarVerbruik" name="gasJaarVerbruik" v-model.number="gasJaarVerbruik">
       <label for="gasJaarTarief">Prijs van 1 m3 gas (totale leveringsprijs)</label>
-      <input type="text" id="gasJaarTarief" name="gasJaarTarief" v-model.number="gasJaarTarief">
+      <input type="number" step="0.1" id="gasJaarTarief" name="gasJaarTarief" v-model.number="gasJaarTarief">
       <label for="kWhJaarVerbruik">Stroomverbruik per jaar in kWh</label>
-      <input type="text" id="kWhJaarVerbruik" name="kWhJaarVerbruik" v-model.number="kWhJaarVerbruik">
+      <input type="number" step="1" id="kWhJaarVerbruik" name="kWhJaarVerbruik" v-model.number="kWhJaarVerbruik">
       <label for="kWhJaarTarief">Prijs van 1 kWh stroom</label>
-      <input type="text" id="kWhJaarTarief" name="kWhJaarTarief" v-model.number="kWhJaarTarief">
+      <input type="number" step="0.1" id="kWhJaarTarief" name="kWhJaarTarief" v-model.number="kWhJaarTarief">
       <label for="voorschotPerMaand">Het voorschotbedrag per maand in euro</label>
-      <input type="text" id="voorschotPerMaand" name="voorschotPerMaand" v-model.number="voorschotPerMaand">
+      <input type="number" step="1" id="voorschotPerMaand" name="voorschotPerMaand" v-model.number="voorschotPerMaand">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur delectus esse expedita explicabo in
         minima nesciunt officiis, possimus quae voluptas? Beatae corporis dolorem dolorum nihil sunt! Explicabo maxime
         reprehenderit tempora.</p>
 
-        <h2 class="app-section__heading">Mijn situatie</h2>
+      <h2 class="app-section__heading">Mijn situatie</h2>
+      <div class="app-content-block winter-slider">
+        <h2 class="app-section__heading">Wat voor winter wordt het</h2>
+        <div class="winter-slider__labels">
+          <label>
+          koud
+        </label>
+          <label>
+            warm
+          </label>
+        </div>
+        <input class="winter-slider__slider" type="range" min="-0.4" max="0.2" step="0.01" v-model.number="scenarioFactor">
+      </div>
+
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, facere.</p>
       <label for="">Ik gebruik (ook) stroom om te verwarmen (bijv. warmtepomp of airco)</label><input type="checkbox" v-model="scenarioEffectOpStroom">
       <label for="gasScenarioJaarVerbruik">gasScenarioJaarVerbruik</label>

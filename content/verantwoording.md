@@ -48,3 +48,4 @@ Het lijkt erop dat deze korting weer wordt verlaagd naar &euro; 560 als het prij
 
 [^1]: [Prijsplafond energie moet huishoudens zekerheid bieden - 20-09-2022](https://www.rijksoverheid.nl/onderwerpen/prinsjesdag/nieuws/2022/09/20/prijsplafond-energie-moet-huishoudens-zekerheid-bieden)
 [^2]: [Maatregelen om de hoge energieprijzen te compenseren](https://www.rijksoverheid.nl/onderwerpen/koopkracht/stijgende-energierekening-deels-gecompenseerd)
+[^3]: [Zeer koude winter betekent 30% meer gasverbruik](https://www.weerplaza.nl/weerinhetnieuws/tot-ruim-30-meer-gasverbruik-in-koude-winters/7313/#:~:text=Zeer%20koude%20winter%20betekent%2030,3000%20tot%20ruim%203200%20graaddagen.)

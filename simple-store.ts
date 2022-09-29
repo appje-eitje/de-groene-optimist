@@ -4,15 +4,15 @@ import { defineStore } from 'pinia'
 const state = () => ({
     gasPlafond: 1200,
     gasPlafondTarief: 1.5,
-    gasJaarVerbruik: 0,
-    gasJaarTarief: 0,
+    gasJaarVerbruik: 1200,
+    gasJaarTarief: 1.5,
 
     kWhPlafond: 2400,
     kWhPlafondTarief: 0.7,
-    kWhJaarVerbruik: 0,
-    kWhJaarTarief: 0,
+    kWhJaarVerbruik: 2400,
+    kWhJaarTarief: 0.7,
 
-    voorschotPerMaand: 0,
+    voorschotPerMaand: 300,
 
     scenarioFactor: 0,
     scenarioEffectOpStroom: false
@@ -54,15 +54,15 @@ const getters = {
         const jaarVerschil = jaarKosten - jaarVoorschot
 
         return {
-            gasScenarioJaarVerbruik,
-            gasJaarKosten,
+            gasScenarioJaarVerbruik: Math.floor(gasScenarioJaarVerbruik),
+            gasJaarKosten: Math.floor(gasJaarKosten),
 
-            kWhScenarioJaarVerbruik,
-            kWhJaarKosten,
+            kWhScenarioJaarVerbruik: Math.floor(kWhScenarioJaarVerbruik),
+            kWhJaarKosten: Math.floor(kWhJaarKosten),
 
-            jaarKosten,
-            jaarVoorschot,
-            jaarVerschil
+            jaarKosten: Math.floor(jaarKosten),
+            jaarVoorschot: Math.floor(jaarVoorschot),
+            jaarVerschil: Math.floor(jaarVerschil)
         }
     }
 }
