@@ -1,86 +1,94 @@
 <template>
   <main class="main-content">
-
     <h1 class="app-page__heading">Bereken je energiekosten</h1>
-
-    <section class="app-content-block section-situatie">
+    <p>Hier kun je laten uitrekenen of je maandelijkse betaling aan je energieleverancier genoeg is om de kosten te dekken.</p>
+    <p>De berekening is gebaseerd op je gas- en stroomverbruik van vorig jaar. Die informatie vind je op de jaarafrekening die je van je energieleverancier hebt gekregen. Je moet ook weten wat je nu betaalt voor een kubieke meter gas en voor een kilowattuur elektriciteit. Ook die bedragen krijg je van je energieleverancier.</p>
+    <div class="sections-container">
+    <section class="app-content-block section-gegevens">
       <h2 class="app-section__heading">Mijn gegevens</h2>
 
-      <label for="gasJaarVerbruik">Gasverbruik per jaar is kubieke meter (m3)</label>
+      <label for="gasJaarVerbruik">Gasverbruik per jaar in kubieke meter (m3)</label>
       <input type="number" step="1" id="gasJaarVerbruik" name="gasJaarVerbruik" v-model.number="gasJaarVerbruik" :class="{warning: validate.negatiefGasVerbruik}">
       <label for="gasJaarTarief">Prijs van 1 m3 gas (totale leveringsprijs)</label>
       <input type="number" step="0.1" id="gasJaarTarief" name="gasJaarTarief" v-model.number="gasJaarTarief" :class="{warning: validate.negatiefGasTarief}">
 
-      <label for="kWhJaarVerbruik">Stroomverbruik per jaar in kWh</label>
+      <label for="kWhJaarVerbruik">Elektriciteitsverbruik per jaar in kWh</label>
       <input type="number" step="1" id="kWhJaarVerbruik" name="kWhJaarVerbruik" v-model.number="kWhJaarVerbruik" :class="{warning: validate.negatiefkWhVerbruik}">
-      <label for="kWhJaarTarief">Prijs van 1 kWh stroom</label>
+      <label for="kWhJaarTarief">Prijs van 1 kWh elektriciteit (totale leveringsprijs)</label>
       <input type="number" step="0.1" id="kWhJaarTarief" name="kWhJaarTarief" v-model.number="kWhJaarTarief" :class="{warning: validate.negatiefkWhTarief}">
 
-      <label for="kWhJaarTerugLeveringToggle">Ik lever ook stroom terug</label>
-      <input type="checkbox" id="kWhJaarTerugLeveringToggle" v-model="kWhJaarTerugLeveringToggle">
+      <small class="toelichting">Heb je zonnepanelen? Dan kun je ook invullen hoeveel je hebt teruggeleverd en welke vergoeding je per kilowattuur krijgt.  </small>
+      <label for="kWhJaarTerugLeveringToggle">
+        <input type="checkbox" id="kWhJaarTerugLeveringToggle" v-model="kWhJaarTerugLeveringToggle">
+        Ik heb zonnepanelen
+      </label>
 
       <template v-if="kWhJaarTerugLeveringToggle">
-        <label for="kWhJaarTeruglevering">Stroom teruglevering per jaar in kWh</label>
+        <label for="kWhJaarTeruglevering">Teruglevering per jaar in kWh</label>
         <input type="number" step="1" id="kWhJaarTeruglevering" name="kWhJaarTeruglevering" v-model.number="kWhJaarTeruglevering" :class="{warning: validate.negatiefkWhTeruglevering}">
-        <label for="kWhJaarTerugleververgoeding">Stroom terugleververgoeding</label>
+        <label for="kWhJaarTerugleververgoeding">Terugleververgoeding</label>
         <input type="number" step="0.1" id="kWhJaarTerugleververgoeding" name="kWhJaarTerugleververgoeding" v-model.number="kWhJaarTerugleververgoeding" :class="{warning: validate.negatiefkWhTerugleververgoeding}">
       </template>
 
-      <label for="voorschotPerMaand">Het voorschotbedrag per maand in euro</label>
+      <h3 class="app-section__heading-sub">Het voorschot</h3>
+      <label for="voorschotPerMaand">Welk bedrag betaal je nu per maand?</label>
       <input type="number" step="1" id="voorschotPerMaand" name="voorschotPerMaand" v-model.number="voorschotPerMaand" :class="{warning: validate.negatiefVoorschot}">
-
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur delectus esse expedita explicabo in
-        minima nesciunt officiis, possimus quae voluptas? Beatae corporis dolorem dolorum nihil sunt! Explicabo maxime
-        reprehenderit tempora.
-      </p>
-
+    </section>
+    <section class="app-content-block section-situatie">
       <h2 class="app-section__heading">Mijn situatie</h2>
-      <div class="app-content-block winter-slider">
-        <h2 class="app-section__heading">Wat voor winter wordt het</h2>
+      <p>Met de instellingen in dit deel stem je je verwachte gas- en elektriciteitsverbruik af op jouw situatie.</p>
+      <div class="app-container winter-slider">
+        <h3 class="app-section__heading-sub">Het is kouder/warmer dan gemiddeld</h3>
+        <small class="toelichting">Een zeer koude winter kost 30% meer energie. Een warmere winter scheelt 20% energie.</small>
         <div class="winter-slider__labels">
           <label>
-            koud
+            kouder
           </label>
           <label>
-            warm
+            warmer
           </label>
         </div>
         <input class="winter-slider__slider" type="range" min="-0.4" max="0.2" step="0.01" v-model.number="scenarioFactor">
       </div>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, facere.</p>
-
-      <label for="">Ik gebruik (ook) stroom om te verwarmen (bijv. warmtepomp of airco)</label><input type="checkbox" v-model="scenarioEffectOpStroom">
-      <label for="gasScenarioJaarVerbruik">gasScenarioJaarVerbruik</label>
+      <h3 class="app-section__heading-sub">Je hebt (ook) elektrische verwarming</h3>
+      <small class="toelichting">Warmtepompen, airco's en zware elektrische kachels gebruiken veel stroom. Je hebt minder gas nodig, maar gebruikt veel meer elektriciteit.</small>
+      <label for="">
+      <input type="checkbox" v-model="scenarioEffectOpStroom">
+        Ik gebruik (ook) stroom om te verwarmen</label>
+      <label for="gasScenarioJaarVerbruik">Bijgesteld gasverbruik</label>
       <input type="text" id="gasScenarioJaarVerbruik" name="gasScenarioJaarVerbruik" v-model.number="overzicht.gasScenarioJaarVerbruik" disabled>
-      <label v-if="scenarioEffectOpStroom" for="kWhScenarioJaarVerbruik">kWhScenarioJaarVerbruik</label>
+      <label v-if="scenarioEffectOpStroom" for="kWhScenarioJaarVerbruik">Bijgesteld elektriciteitsverbruik</label>
       <input v-if="scenarioEffectOpStroom" type="text" id="kWhScenarioJaarVerbruik" name="kWhScenarioJaarVerbruik" v-model.number="overzicht.kWhScenarioJaarVerbruik" disabled>
-        <p>
-          De gegevens van de overheid zijn ingevuld. Je kunt ze zelf aanpassen. Laad de pagina opnieuw om de gegevens
-          te herstellen. 
-        </p>
-        <label for="gasPlafond">Aantal kubieke meter gas in het gasplafond</label>
-        <input type="text" id="gasPlafond" name="gasPlafond" v-model.number="gasPlafond">
-        <label for="gasPlafondTarief">gasPlafondTarief</label>
-        <input type="text" id="gasPlafondTarief" name="gasPlafondTarief" v-model.number="gasPlafondTarief">
-        <label for="kWhPlafond">kWhPlafond</label>
-        <input type="text" id="kWhPlafond" name="kWhPlafond" v-model.number="kWhPlafond">
-        <label for="kWhPlafondTarief">kWhPlafondTarief</label>
-        <input type="text" id="kWhPlafondTarief" name="kWhPlafondTarief" v-model.number="kWhPlafondTarief">
     </section>
-
     <section class="app-content-block section-kosten">
-      <h2 class="app-section__heading">Mijn kosten</h2>
-      <label for="gasJaarKosten">gasJaarKosten</label>
+      <h2 class="app-section__heading">Het prijsplafond</h2>
+      <small class="toelichting">De gegevens van de overheid zijn al ingevuld, maar je kunt ze aanpassen.</small>
+      <label for="gasPlafond">Aantal kubieke meter gas in het prijsplafond</label>
+      <input type="text" id="gasPlafond" name="gasPlafond" v-model.number="gasPlafond">
+      <label for="gasPlafondTarief">Gastarief in het prijsplafond</label>
+      <input type="text" id="gasPlafondTarief" name="gasPlafondTarief" v-model.number="gasPlafondTarief">
+      <label for="kWhPlafond">Aantal kilowattuur elektriciteit in het prijsplafond</label>
+      <input type="text" id="kWhPlafond" name="kWhPlafond" v-model.number="kWhPlafond">
+      <label for="kWhPlafondTarief">Elektriciteitstarief in het prijsplafond</label>
+      <input type="text" id="kWhPlafondTarief" name="kWhPlafondTarief" v-model.number="kWhPlafondTarief">
+      <button type="button">Herstel het prijsplafond</button>
+<!--    </section>-->
+
+<!--    <section class="app-content-block section-kosten">-->
+      <h2 class="app-section__heading">Mijn jaarlijkse kosten</h2>
+      <label for="gasJaarKosten">Kosten voor gas</label>
       <input type="text" id="gasJaarKosten" name="gasJaarKosten" v-model.number="overzicht.gasJaarKosten" disabled>
-      <label for="kWhJaarKosten">kWhJaarKosten</label>
+      <label for="kWhJaarKosten">Kosten voor elektriciteit</label>
       <input type="text" id="kWhJaarKosten" name="kWhJaarKosten" v-model.number="overzicht.kWhJaarKosten" disabled>
-      <label for="jaarKosten">jaarKosten</label>
+      <label for="jaarKosten">Totale kosten</label>
       <input type="text" id="jaarKosten" name="jaarKosten" v-model.number="overzicht.jaarKosten" disabled>
-      <label for="jaarVoorschot">jaarVoorschot</label>
+      <label for="jaarVoorschot">Betaald voorschot</label>
       <input type="text" id="jaarVoorschot" name="jaarVoorschot" v-model.number="overzicht.jaarVoorschot" disabled>
-      <label for="jaarVerschil">jaarVerschil</label>
+      <label for="jaarVerschil">
+        <span v-if="overzicht.jaarVerschil < 0">Je hebt waarschijnlijk te veel betaald</span>
+        <span v-if="overzicht.jaarVerschil > 0">Je hebt waarschijnlijk te weinig betaald</span>
+        <span v-if="overzicht.jaarVerschil === 0">Je voorschot komt waarschijnlijk overeen met je gebruik</span>
+      </label>
       <input type="text" id="jaarVerschil" name="jaarVerschil" v-model.number="overzicht.jaarVerschil" disabled>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam aspernatur beatae dolor esse expedita
@@ -96,7 +104,7 @@
         </li>
       </ul>
     </section>
-
+    </div>
   </main>
 </template>
   
@@ -117,67 +125,6 @@
   
   </script>
   
-  <style>
-
-  .app-page__heading {
-    font-size: 1.8rem;
-    margin-block-end: 0.5em;
-  }
-
-  .app-section__heading {
-    font-size: 1.6rem;
-    font-weight: normal;
-    margin-block-end: 0.5em;
-  }
-
-  .app-content-block + .app-content-block {
-    margin-block-start: 1em;
-  }
-
-  .winter-slider {
-    display: inline-block;
-  }
-
-  .winter-slider h2 {
-    font-size: 1.4em;
-    font-weight: normal;
-  }
-
-  .winter-slider__labels {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .winter-slider__slider {
-    inline-size: 100%;
-  }
-
-
-
-  .main-content {
-    padding: 1rem;
-
-  }
-
-  .section-situatie {
-  }
-
-  .section-kosten {
-  }
-
-  .section-verantwoording {
-  }
-
-  .winter-slider {
-  }
-
-  label + input {
-    display: block;
-  }
-
-  .warning {
-    background-color:bisque;
-  }
-  
+  <style src="./simple.vue.scss" lang="scss" scoped>
   </style>
   
