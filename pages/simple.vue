@@ -5,27 +5,43 @@
 
     <section class="app-content-block section-situatie">
       <h2 class="app-section__heading">Mijn gegevens</h2>
+
       <label for="gasJaarVerbruik">Gasverbruik per jaar is kubieke meter (m3)</label>
-      <input type="number" step="1" id="gasJaarVerbruik" name="gasJaarVerbruik" v-model.number="gasJaarVerbruik">
+      <input type="number" step="1" id="gasJaarVerbruik" name="gasJaarVerbruik" v-model.number="gasJaarVerbruik" :class="{warning: validate.negatiefGasVerbruik}">
       <label for="gasJaarTarief">Prijs van 1 m3 gas (totale leveringsprijs)</label>
-      <input type="number" step="0.1" id="gasJaarTarief" name="gasJaarTarief" v-model.number="gasJaarTarief">
+      <input type="number" step="0.1" id="gasJaarTarief" name="gasJaarTarief" v-model.number="gasJaarTarief" :class="{warning: validate.negatiefGasTarief}">
+
       <label for="kWhJaarVerbruik">Stroomverbruik per jaar in kWh</label>
-      <input type="number" step="1" id="kWhJaarVerbruik" name="kWhJaarVerbruik" v-model.number="kWhJaarVerbruik">
+      <input type="number" step="1" id="kWhJaarVerbruik" name="kWhJaarVerbruik" v-model.number="kWhJaarVerbruik" :class="{warning: validate.negatiefkWhVerbruik}">
       <label for="kWhJaarTarief">Prijs van 1 kWh stroom</label>
-      <input type="number" step="0.1" id="kWhJaarTarief" name="kWhJaarTarief" v-model.number="kWhJaarTarief">
+      <input type="number" step="0.1" id="kWhJaarTarief" name="kWhJaarTarief" v-model.number="kWhJaarTarief" :class="{warning: validate.negatiefkWhTarief}">
+
+      <label for="kWhJaarTerugLeveringToggle">Ik lever ook stroom terug</label>
+      <input type="checkbox" id="kWhJaarTerugLeveringToggle" v-model="kWhJaarTerugLeveringToggle">
+
+      <template v-if="kWhJaarTerugLeveringToggle">
+        <label for="kWhJaarTeruglevering">Stroom teruglevering per jaar in kWh</label>
+        <input type="number" step="1" id="kWhJaarTeruglevering" name="kWhJaarTeruglevering" v-model.number="kWhJaarTeruglevering" :class="{warning: validate.negatiefkWhTeruglevering}">
+        <label for="kWhJaarTerugleververgoeding">Stroom terugleververgoeding</label>
+        <input type="number" step="0.1" id="kWhJaarTerugleververgoeding" name="kWhJaarTerugleververgoeding" v-model.number="kWhJaarTerugleververgoeding" :class="{warning: validate.negatiefkWhTerugleververgoeding}">
+      </template>
+
       <label for="voorschotPerMaand">Het voorschotbedrag per maand in euro</label>
-      <input type="number" step="1" id="voorschotPerMaand" name="voorschotPerMaand" v-model.number="voorschotPerMaand">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur delectus esse expedita explicabo in
+      <input type="number" step="1" id="voorschotPerMaand" name="voorschotPerMaand" v-model.number="voorschotPerMaand" :class="{warning: validate.negatiefVoorschot}">
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur delectus esse expedita explicabo in
         minima nesciunt officiis, possimus quae voluptas? Beatae corporis dolorem dolorum nihil sunt! Explicabo maxime
-        reprehenderit tempora.</p>
+        reprehenderit tempora.
+      </p>
 
       <h2 class="app-section__heading">Mijn situatie</h2>
       <div class="app-content-block winter-slider">
         <h2 class="app-section__heading">Wat voor winter wordt het</h2>
         <div class="winter-slider__labels">
           <label>
-          koud
-        </label>
+            koud
+          </label>
           <label>
             warm
           </label>
@@ -34,13 +50,16 @@
       </div>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, facere.</p>
+
       <label for="">Ik gebruik (ook) stroom om te verwarmen (bijv. warmtepomp of airco)</label><input type="checkbox" v-model="scenarioEffectOpStroom">
       <label for="gasScenarioJaarVerbruik">gasScenarioJaarVerbruik</label>
       <input type="text" id="gasScenarioJaarVerbruik" name="gasScenarioJaarVerbruik" v-model.number="overzicht.gasScenarioJaarVerbruik" disabled>
       <label v-if="scenarioEffectOpStroom" for="kWhScenarioJaarVerbruik">kWhScenarioJaarVerbruik</label>
       <input v-if="scenarioEffectOpStroom" type="text" id="kWhScenarioJaarVerbruik" name="kWhScenarioJaarVerbruik" v-model.number="overzicht.kWhScenarioJaarVerbruik" disabled>
-        <p>De gegevens van de overheid zijn ingevuld. Je kunt ze zelf aanpassen. Laad de pagina opnieuw om de gegevens
-          te herstellen. </p>
+        <p>
+          De gegevens van de overheid zijn ingevuld. Je kunt ze zelf aanpassen. Laad de pagina opnieuw om de gegevens
+          te herstellen. 
+        </p>
         <label for="gasPlafond">Aantal kubieke meter gas in het gasplafond</label>
         <input type="text" id="gasPlafond" name="gasPlafond" v-model.number="gasPlafond">
         <label for="gasPlafondTarief">gasPlafondTarief</label>
@@ -63,9 +82,12 @@
       <input type="text" id="jaarVoorschot" name="jaarVoorschot" v-model.number="overzicht.jaarVoorschot" disabled>
       <label for="jaarVerschil">jaarVerschil</label>
       <input type="text" id="jaarVerschil" name="jaarVerschil" v-model.number="overzicht.jaarVerschil" disabled>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam aspernatur beatae dolor esse expedita
-        iusto mollitia nesciunt quia ut! Accusantium, debitis dolorem harum illo ipsa minus repellat sit totam.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam aspernatur beatae dolor esse expedita
+        iusto mollitia nesciunt quia ut! Accusantium, debitis dolorem harum illo ipsa minus repellat sit totam.
+      </p>
     </section>
+
     <section class="app-content-block section-verantwoording">
       <h2 class="app-section__heading">Verantwoording en achtergrond</h2>
       <ul>
@@ -74,6 +96,7 @@
         </li>
       </ul>
     </section>
+
   </main>
 </template>
   
@@ -84,10 +107,12 @@
   
     const store = useSimpleComputationStore()
     const { 
-        gasPlafond, gasPlafondTarief, gasJaarVerbruik, 
-        gasJaarTarief, kWhPlafond, kWhPlafondTarief, 
-        kWhJaarVerbruik, kWhJaarTarief, voorschotPerMaand, 
-        scenarioFactor, overzicht, scenarioEffectOpStroom
+        gasPlafond, gasPlafondTarief, gasJaarVerbruik, gasJaarTarief,
+        kWhPlafond, kWhPlafondTarief, kWhJaarVerbruik, kWhJaarTarief,
+        kWhJaarTeruglevering, kWhJaarTerugleververgoeding, kWhJaarTerugLeveringToggle,
+        voorschotPerMaand, 
+        scenarioFactor, scenarioEffectOpStroom, 
+        overzicht, validate
     } = storeToRefs(store)
   
   </script>
@@ -148,6 +173,10 @@
 
   label + input {
     display: block;
+  }
+
+  .warning {
+    background-color:bisque;
   }
   
   </style>

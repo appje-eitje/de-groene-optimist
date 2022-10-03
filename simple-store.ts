@@ -2,6 +2,7 @@
 import { defineStore } from 'pinia'
 
 const state = () => ({
+
     gasPlafond: 1200,
     gasPlafondTarief: 1.5,
     gasJaarVerbruik: 1200,
@@ -12,15 +13,32 @@ const state = () => ({
     kWhJaarVerbruik: 2400,
     kWhJaarTarief: 0.7,
 
+    kWhJaarTerugLeveringToggle: false,
+    kWhJaarTeruglevering: 0,
+    kWhJaarTerugleververgoeding: 0,
+
     voorschotPerMaand: 300,
 
     scenarioFactor: 0,
-    scenarioEffectOpStroom: false
+    scenarioEffectOpStroom: false,
 })
 
 const getters = {
+
+    validate: (state) => {
+        return {
+            negatiefGasVerbruik: state.gasJaarVerbruik < 0,
+            negatiefGasTarief: state.gasJaarTarief < 0,
+            negatiefkWhVerbruik: state.kWhJaarVerbruik < 0,
+            negatiefkWhTarief: state.kWhJaarTarief < 0,
+            negatiefkWhTeruglevering: state.kWhJaarTerugLeveringToggle && state.kWhJaarTeruglevering < 0,
+            negatiefkWhTerugleververgoeding: state.kWhJaarTerugLeveringToggle && state.kWhJaarTerugleververgoeding < 0,
+            negatiefVoorschot: state.voorschotPerMaand < 0 
+        }
+    },
+
     overzicht: (state) => {
-        
+
         // gas berekeningen
 
         let gasJaarKosten = 0
@@ -35,16 +53,26 @@ const getters = {
         // kWh berekeningen
 
         let kWhJaarKosten = 0
-        let kWhScenarioJaarVerbruik = state.kWhJaarVerbruik 
-        if (state.scenarioEffectOpStroom) {
-            kWhScenarioJaarVerbruik -= state.scenarioFactor * state.kWhJaarVerbruik
+        let kWhScenarioJaarVerbruik = state.kWhJaarVerbruik
+        if (state.kWhJaarTerugLeveringToggle) {
+            kWhScenarioJaarVerbruik -= state.kWhJaarTeruglevering
         }
 
-        if (state.kWhPlafond > kWhScenarioJaarVerbruik) {
-            kWhJaarKosten += state.kWhPlafondTarief * kWhScenarioJaarVerbruik
+        console.log(kWhScenarioJaarVerbruik)
+
+        if (kWhScenarioJaarVerbruik >= 0) {
+            if (state.scenarioEffectOpStroom) {
+                kWhScenarioJaarVerbruik -= state.scenarioFactor * state.kWhJaarVerbruik
+            }
+    
+            if (state.kWhPlafond > kWhScenarioJaarVerbruik) {
+                kWhJaarKosten += state.kWhPlafondTarief * kWhScenarioJaarVerbruik
+            } else {
+                kWhJaarKosten += state.kWhPlafondTarief * state.kWhPlafond
+                kWhJaarKosten += state.kWhJaarTarief * (kWhScenarioJaarVerbruik - state.kWhPlafond)
+            }
         } else {
-            kWhJaarKosten += state.kWhPlafondTarief * state.kWhPlafond
-            kWhJaarKosten += state.kWhJaarTarief * (kWhScenarioJaarVerbruik - state.kWhPlafond)
+            kWhJaarKosten = kWhScenarioJaarVerbruik * state.kWhJaarTerugleververgoeding
         }
 
         // jaar berekeningen
