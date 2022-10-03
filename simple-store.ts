@@ -54,17 +54,15 @@ const getters = {
 
         let kWhJaarKosten = 0
         let kWhScenarioJaarVerbruik = state.kWhJaarVerbruik
+        if (state.scenarioEffectOpStroom) {
+            kWhScenarioJaarVerbruik -= state.scenarioFactor * state.kWhJaarVerbruik
+        }
+
         if (state.kWhJaarTerugLeveringToggle) {
             kWhScenarioJaarVerbruik -= state.kWhJaarTeruglevering
         }
 
-        console.log(kWhScenarioJaarVerbruik)
-
         if (kWhScenarioJaarVerbruik >= 0) {
-            if (state.scenarioEffectOpStroom) {
-                kWhScenarioJaarVerbruik -= state.scenarioFactor * state.kWhJaarVerbruik
-            }
-    
             if (state.kWhPlafond > kWhScenarioJaarVerbruik) {
                 kWhJaarKosten += state.kWhPlafondTarief * kWhScenarioJaarVerbruik
             } else {
