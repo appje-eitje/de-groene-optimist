@@ -1,3 +1,46 @@
+.main-content {
+  padding: 1rem;
+}
+
+.sections-container {
+  @media (min-width: 650px) {
+    align-items: start;
+    display: grid;
+    gap : 1rem 2rem;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-template-rows: repeat(3, auto);
+    margin-block: 4rem 1rem;
+  }
+}
+
+.app-content-block {
+  margin-block: 1rem 1.75rem;
+
+  @media (min-width: 650px) {
+    margin-block: 0;
+  }
+}
+
+.section-gegevens {
+  grid-column: 1;
+  grid-row: 1
+}
+
+.section-situatie {
+  grid-column: 1;
+  grid-row: 2
+}
+
+.section-kosten {
+  grid-column: 2;
+  grid-row: 1 / -1;
+}
+
+.section-verantwoording {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
 .app-page__heading {
   font-size: 1.8rem;
   font-weight: normal;
@@ -7,13 +50,16 @@
     line-height: 1.3;
     margin-block-end: 1rem;
   }
-
 }
 
 .app-section__heading {
   font-size: 1.4rem;
   font-weight: normal;
   margin-block: 1rem 0.5rem;
+
+  @media (min-width: 650px) {
+    margin-block-start: 0;
+  }
 
   + p {
     margin-block: 0.5rem;
@@ -23,7 +69,7 @@
 .app-section__heading-sub {
   font-size: 1.2rem;
   font-weight: normal;
-
+  margin-block: 1rem 0.5rem;
 }
 
 .toelichting {
@@ -33,12 +79,18 @@
   margin-block-end: 0.5rem;
 }
 
-.app-content-block {
-  margin-block: 1rem 1.75rem;
+label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
-:is(label + input, label) {
+:is(label + input) {
   display: block;
+  margin-block-end: 0.5rem;
+}
+
+label > input {
   margin-block-end: 0.5rem;
 }
 
@@ -71,45 +123,9 @@ input:nth-of-type(2n) {
   }
 
   &::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, hsl(190deg 100% 50%), white, hsl(10deg 100% 50%));
+    background: linear-gradient(to right, hsl(190deg 100% 50%), white 66%, hsl(10deg 100% 50%));
+    border-radius: 1rem;
   }
-}
-
-.main-content {
-  padding: 1rem;
-}
-
-.sections-container {
-  @media (min-width: 650px) {
-    align-items: start;
-    display: grid;
-    column-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-}
-
-.section-gegevens {
-  grid-column: 1;
-  grid-row: 1
-}
-
-.section-situatie {
-  grid-column: 1;
-  grid-row: 2
-}
-
-.section-kosten {
-  grid-column: 2;
-  grid-row: 1 / 3;
-}
-
-.section-verantwoording {
-  grid-column: 1 / 3;
-  grid-row: 4;
-
-}
-
-.winter-slider {
 }
 
 .warning {
