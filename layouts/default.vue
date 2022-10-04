@@ -22,7 +22,7 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: route.meta.canonical ? route.meta.canonical : 'https://appje-eitje.nl' + route.path,
+      href: route.meta.canonical ? route.meta.canonical : 'https://degroeneoptimist.nl' + route.path,
     },
   ],
   meta: [
