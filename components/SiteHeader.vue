@@ -1,18 +1,9 @@
 <template>
   <header class="header layout">
     <span class="header__logo">
-      <SiteLogo/>
+      <NuxtLink to="/"><SiteLogo/></NuxtLink>
     </span>
     <p class="header__title">De Groene Optimist</p>
-
-<!--    <nav class="navigation">-->
-<!--      <button class="navigation__button" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen">open</button>-->
-<!--      <ul class="navigation__menu">-->
-<!--        <li>-->
-<!--          <a href="">linkje</a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </nav>-->
   </header>
 </template>
 
@@ -20,11 +11,6 @@
 import SiteLogo from "../assets/images/SiteLogo";
 
 export default {
-  data() {
-    return {
-      menuOpen: false,
-    }
-  },
   components: {SiteLogo}
 }
 </script>
