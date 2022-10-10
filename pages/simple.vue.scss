@@ -6,6 +6,8 @@
   --color: hsl(200deg 5% 15%);
   --color-l: hsl(200deg 5% 45%);
 
+  --focus: 0 0 4px 2px hsl(200 50% 50%);
+
   --border-radius: 0.5rem;
 
   --margin-s: 0.5rem;
@@ -130,7 +132,7 @@ input[type="number"] {
   text-align: center;
 
   &:focus, &:hover:not(:disabled) {
-    box-shadow: 0 0 4px 2px hsl(200 50% 50%);
+    box-shadow: var(--focus);
   }
 
   &:disabled {
@@ -145,7 +147,6 @@ input[type="number"] {
 
 .winter-slider {
   display: block;
-  //margin-block-end: var(--margin-m);
 }
 
 .winter-slider__labels {
