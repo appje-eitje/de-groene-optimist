@@ -31,7 +31,7 @@
           >
           <label for="kWhJaarTerugLeveringToggle">Ik lever elektriciteit terug</label>
         </div>
-        <template v-if="kWhJaarTerugLeveringToggle">
+        <div v-show="kWhJaarTerugLeveringToggle">
           <div class="input-group">
             <label for="kWhJaarTeruglevering">Teruglevering per jaar in kWh</label>
             <input
@@ -53,7 +53,7 @@
                 v-model.number="kWhJaarTerugleververgoeding"
                 :class="{warning: validate.negatiefkWhTerugleververgoeding}">
           </div>
-        </template>
+        </div>
       </div>
       <h3 class="app-section__heading">Je kosten</h3>
       <div class="input-group">
@@ -98,8 +98,8 @@
 <script setup>
   
 import { useSimpleComputationStore } from '~~/simple-store'
-import { storeToRefs } from 'pinia';
-import { ref, watch } from "vue";
+import { storeToRefs } from 'pinia'
+import {nextTick, ref, watch} from 'vue'
 
 const store = useSimpleComputationStore()
 const {
@@ -111,6 +111,8 @@ const {
     overzicht, validate
 } = storeToRefs(store)
 
+const teruglevering = ref(null)
+
 watch(kWhJaarTerugLeveringToggle, (value) => {
   if (value) {
     kWhJaarVerbruik.value = 0
@@ -121,12 +123,10 @@ watch(kWhJaarVerbruik, (value) => {
   if (value < 0) {
     kWhJaarTerugLeveringToggle.value = true
     kWhJaarTeruglevering.value = value * -1
-
-    // TODO: focus op de terug leverings input box zetten
-    // dit werkt niet, want door v-if bestaan de element nog niet op dit moment :)
-    const teruglevering = ref(null)
-    console.log(teruglevering)
   }
+    nextTick(() => {
+      teruglevering.value.focus();
+    })
 });
 
 </script>

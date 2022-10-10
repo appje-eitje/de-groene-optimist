@@ -84,7 +84,7 @@ p {
   background: var(--background-color);
   border: none;
   border-radius: var(--border-radius);
-  margin-block-start: var(--margin-l);
+  margin-block: var(--margin-l) var(--margin-m);
   padding: var(--padding-m) var(--padding-s);
 
   > ul {
@@ -128,6 +128,15 @@ input[type="number"] {
   inline-size: 8ch;
   padding-block: var(--padding-xs);
   text-align: center;
+
+  &:focus, &:hover:not(:disabled) {
+    box-shadow: 0 0 4px 2px hsl(200 50% 50%);
+  }
+
+  &:disabled {
+    background: transparent;
+    border-color: transparent;
+  }
 }
 
 .warning {
@@ -152,4 +161,3 @@ input[type="number"] {
 .winter-slider__slider {
   inline-size: 100%;
 }
-
