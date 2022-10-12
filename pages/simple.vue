@@ -1,7 +1,7 @@
 <template>
   <main class="main-content">
     <h1 class="app-page__heading">Energiekosten in 2023</h1>
-    <p>Krijg een indicatie van je kosten voor gas en elektriciteit met het prijsplafond.</p>
+    <p>Krijg een indicatie van je kosten voor gas en elektriciteit met het <NuxtLink to="/verantwoording">prijsplafond</NuxtLink>.</p>
     <p>Vul in hoeveel gas en stroom je <strong>per jaar</strong> verbruikt. Heb je zonnepanelen? Dan kun je een negatief getal invoeren en je terugleververgoeding toevoegen.</p>
     <p>De prijzen voor gas en stroom boven het prijslafond komen van het CBS. Vervang die door de prijzen die je daadwerkelijk betaalt.</p>
     <section class="app-content-block">

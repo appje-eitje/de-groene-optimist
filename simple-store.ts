@@ -4,12 +4,12 @@ import { defineStore } from 'pinia'
 const state = () => ({
 
     gasPlafond: 1200,
-    gasPlafondTarief: 1.5,
+    gasPlafondTarief: 1.45,
     gasJaarVerbruik: 1200,
     gasJaarTarief: 1.5,
 
-    kWhPlafond: 2400,
-    kWhPlafondTarief: 0.7,
+    kWhPlafond: 2900,
+    kWhPlafondTarief: 0.4,
     kWhJaarVerbruik: 2400,
     kWhJaarTarief: 0.7,
 
