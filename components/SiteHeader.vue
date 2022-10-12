@@ -1,19 +1,22 @@
 <template>
   <header class="header layout">
-    <span class="header__logo">
-      <NuxtLink to="/"><SiteLogo/></NuxtLink>
-    </span>
-    <p class="header__title">De Groene Optimist</p>
+    <h1 class="header__logo">
+      <NuxtLink to="/">
+        <SiteLogo />
+        De Groene Optimist
+      </NuxtLink>
+    </h1>
+
+    <nav>
+      <!-- <button class="navigation__button" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen">open</button> -->
+      <ul class="navigation__menu">
+        <li>
+          <NuxtLink to="/over">Over</NuxtLink>
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
-
-<script>
-import SiteLogo from "../assets/images/SiteLogo";
-
-export default {
-  components: {SiteLogo}
-}
-</script>
 
 <style>
 .header {

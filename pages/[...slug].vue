@@ -1,7 +1,7 @@
 <template>
-  <main class="layout">
+  <div>
     <ContentDoc />
-  </main>
+  </div>
 </template>
 
 <style>

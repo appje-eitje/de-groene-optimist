@@ -1,3 +1,14 @@
+---
+title: Prijsplafond, wat betekent dat voor mij?
+type: case-study
+tldr: |
+  todo
+readMore: false
+authors:
+  - Melle-Wijnia
+  - Melle-Wijnia
+---
+
 ## Toelichting en verantwoording
 
 Deze rekentool geeft je inzicht in je energiekosten. De
