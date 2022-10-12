@@ -119,6 +119,11 @@ p {
     background: var(--background-color-l);
     border-radius: var(--border-radius);
     margin-block-end: var(--margin-m);
+
+    &.__single {
+      background: transparent;
+      margin-block-end: unset;
+    }
   }
 }
 

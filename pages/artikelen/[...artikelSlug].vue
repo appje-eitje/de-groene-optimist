@@ -1,6 +1,6 @@
 <template>
   <main class="page-center">
-    <PageContent>
+    <PageContent class="page-content">
       <div>
         <small>TLDR</small>
         {{ data.tldr }}
@@ -17,3 +17,16 @@ const { data } = await useAsyncData(`content-${path}`, () => {
   return queryContent().where({ _path: path }).findOne()
 })
 </script>
+
+<style scoped lang="scss">
+
+.page-center {
+  display: grid;
+  justify-content: center;
+}
+
+.page-content {
+  max-inline-size: 60ch;
+}
+
+</style>

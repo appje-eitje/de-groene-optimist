@@ -6,12 +6,12 @@ const state = () => ({
     gasPlafond: 1200,
     gasPlafondTarief: 1.45,
     gasJaarVerbruik: 1200,
-    gasJaarTarief: 1.5,
+    gasJaarTarief: 3.26,
 
     kWhPlafond: 2900,
     kWhPlafondTarief: 0.4,
-    kWhJaarVerbruik: 2400,
-    kWhJaarTarief: 0.7,
+    kWhJaarVerbruik: 2900,
+    kWhJaarTarief: 0.72,
 
     kWhJaarTerugLeveringToggle: false,
     kWhJaarTeruglevering: 0,
@@ -33,7 +33,7 @@ const getters = {
             negatiefkWhTarief: state.kWhJaarTarief < 0,
             negatiefkWhTeruglevering: state.kWhJaarTerugLeveringToggle && state.kWhJaarTeruglevering < 0,
             negatiefkWhTerugleververgoeding: state.kWhJaarTerugLeveringToggle && state.kWhJaarTerugleververgoeding < 0,
-            negatiefVoorschot: state.voorschotPerMaand < 0 
+            negatiefVoorschot: state.voorschotPerMaand < 0
         }
     },
 
@@ -101,7 +101,7 @@ const actions = {
 }
 
 export const useSimpleComputationStore = defineStore('simple-computation-store', {
-    state, 
-    actions, 
+    state,
+    actions,
     getters,
 })
