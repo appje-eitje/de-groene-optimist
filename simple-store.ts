@@ -82,11 +82,14 @@ const getters = {
         return {
             gasScenarioJaarVerbruik: Math.floor(gasScenarioJaarVerbruik),
             gasJaarKosten: Math.floor(gasJaarKosten),
+            gasMaandKosten: Math.floor(gasJaarKosten/12),
 
             kWhScenarioJaarVerbruik: Math.floor(kWhScenarioJaarVerbruik),
             kWhJaarKosten: Math.floor(kWhJaarKosten),
+            kWhMaandKosten: Math.floor(kWhJaarKosten/12),
 
             jaarKosten: Math.floor(jaarKosten),
+            maandKosten: Math.floor(jaarKosten/12),
             jaarVoorschot: Math.floor(jaarVoorschot),
             jaarVerschil: Math.floor(jaarVerschil)
         }
