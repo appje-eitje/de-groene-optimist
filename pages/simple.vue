@@ -81,15 +81,15 @@
       </div>
       <h3 class="app-section__heading">Invloed van de winter <button @click.prevent="scenarioFactor=0">reset</button></h3>
       <div class="winter-slider">
-        <div class="winter-slider__labels">
-          <label>
+        <label class="winter-slider__labels" for="winter-slider">
+          <span>
             kouder
-          </label>
-          <label>
+          </span>
+          <span>
             warmer
-          </label>
-        </div>
-        <input class="winter-slider__slider" ref="slider" type="range" min="-0.3" max="0.2" step="0.01" v-model.number="scenarioFactor">
+          </span>
+        </label>
+        <input id="winter-slider" class="winter-slider__slider" ref="slider" type="range" min="-0.3" max="0.2" step="0.01" v-model.number="scenarioFactor">
       </div>
       <div class="app-content-block __result">
         <p>Je geschatte kosten in 2023 met het prijsplafond zijn voor gas <strong>&euro;&nbsp;{{ overzicht.gasJaarKosten }}</strong> en
@@ -109,6 +109,7 @@
           De kans op een zeer koude winter is klein, maar de gevolgen kunnen groot zijn.
           Een milde winter scheelt verwarmingskosten.
           De invloed daarvan is kleiner: maximaal 20% van de verwarmingskosten.</p>
+        <p>Meer details en achtergronden zijn te vinden in het artikel <NuxtLink to="artikelen/2022-10-12-prijsplafond-verantwoording">Prijsplafond, wat betekent dat voor mij?</NuxtLink></p>
       </div>
     </section>
   </main>
