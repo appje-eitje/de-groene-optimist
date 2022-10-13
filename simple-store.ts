@@ -75,23 +75,23 @@ const getters = {
 
         // jaar berekeningen
 
-        const jaarKosten = gasJaarKosten + kWhJaarKosten
-        const jaarVoorschot = 12 * state.voorschotPerMaand
-        const jaarVerschil = jaarKosten - jaarVoorschot
+        const jaarKosten = Math.round(gasJaarKosten + kWhJaarKosten)
+        const jaarVoorschot = Math.round(12 * state.voorschotPerMaand)
+        const jaarVerschil = Math.round(jaarKosten - jaarVoorschot)
 
         return {
-            gasScenarioJaarVerbruik: Math.floor(gasScenarioJaarVerbruik),
-            gasJaarKosten: Math.floor(gasJaarKosten),
-            gasMaandKosten: Math.floor(gasJaarKosten/12),
+            gasScenarioJaarVerbruik: Math.round(gasScenarioJaarVerbruik),
+            gasJaarKosten: Math.round(gasJaarKosten),
+            gasMaandKosten: Math.round(gasJaarKosten/12),
 
-            kWhScenarioJaarVerbruik: Math.floor(kWhScenarioJaarVerbruik),
-            kWhJaarKosten: Math.floor(kWhJaarKosten),
-            kWhMaandKosten: Math.floor(kWhJaarKosten/12),
+            kWhScenarioJaarVerbruik: Math.round(kWhScenarioJaarVerbruik),
+            kWhJaarKosten: Math.round(kWhJaarKosten),
+            kWhMaandKosten: Math.round(kWhJaarKosten/12),
 
-            jaarKosten: Math.floor(jaarKosten),
-            maandKosten: Math.floor(jaarKosten/12),
-            jaarVoorschot: Math.floor(jaarVoorschot),
-            jaarVerschil: Math.floor(jaarVerschil)
+            jaarKosten: Math.round(jaarKosten),
+            maandKosten: Math.round(jaarKosten/12),
+            jaarVoorschot: Math.round(jaarVoorschot),
+            jaarVerschil: Math.round(jaarVerschil)
         }
     }
 }
