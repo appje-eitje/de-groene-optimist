@@ -108,8 +108,12 @@
           Een zeer koude winter verhoogt het energieverbruik met 30%.
           De kans op een zeer koude winter is klein, maar de gevolgen kunnen groot zijn.
           Een milde winter scheelt verwarmingskosten.
-          De invloed daarvan is kleiner: maximaal 20% van de verwarmingskosten.</p>
-        <p>Meer details en achtergronden zijn te vinden in het artikel <NuxtLink to="artikelen/2022-10-12-prijsplafond-verantwoording">Prijsplafond, wat betekent dat voor mij?</NuxtLink></p>
+          De invloed daarvan is kleiner: maximaal 20% van de verwarmingskosten.
+        </p>
+        <p>
+          Meer details en achtergronden zijn te vinden in het artikel
+            <NuxtLink to="artikelen/2022-10-12-prijsplafond-verantwoording">Prijsplafond, wat betekent dat voor mij?</NuxtLink>
+        </p>
       </div>
     </section>
   </main>
@@ -157,5 +161,5 @@ watch(kWhJaarVerbruik, (value) => {
 
 </script>
 
-<style src="./simple.vue.scss" lang="scss" scoped>
+<style src="./prijsplafond-berekenen.vue.scss" lang="scss" scoped>
 </style>

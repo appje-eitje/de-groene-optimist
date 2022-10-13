@@ -8,7 +8,7 @@ authors:
   - Peter Doolaard
 ---
 
-De [energieprijstool](/simple) van De Groene Optimist geeft je inzicht in je energiekosten. De gegevens zijn gebaseerd op de laatste informatie van de overheid over het prijsplafond voor gas en elektriciteit.
+De [energieprijstool](/prijsplafond-berekenen) van De Groene Optimist geeft je inzicht in je energiekosten. De gegevens zijn gebaseerd op de laatste informatie van de overheid over het prijsplafond voor gas en elektriciteit.
 
 ## Herkomst en gebruik van de bedragen
 
