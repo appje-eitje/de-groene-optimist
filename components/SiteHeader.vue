@@ -12,6 +12,11 @@
       <!-- <button class="navigation__button" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen">open</button> -->
       <ul class="navigation__menu">
         <li>
+          <NuxtLink to="/" class="site-nav-link">
+            Home
+          </NuxtLink>
+        </li>
+        <li>
           <NuxtLink to="/over" class="site-nav-link">
             Over
           </NuxtLink>
